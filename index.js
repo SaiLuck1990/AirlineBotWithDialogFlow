@@ -34,7 +34,9 @@ app.post('/result',function(req,res){
               console.log('Success');
 			  console.log(body);
 			  res.type('json');
-              res.json(JSON.stringify(body));
+                // send only text response
+              let responseJson = {fulfillmentText: JSON.stringify(body)}; 
+             response.json(responseJson); 
 		  }else{
 			  res.send("Error !!!!!"+error);
 		  }
