@@ -37,7 +37,16 @@ app.post('/result',function(req,res){
                 // send only text response
               let responseJson = JSON.stringify(body); 
 
-              var out = {speech: "Your result is", displayText:"Your result from node js"};
+              var out =
+             {"fulfillment": 
+                   {"speech": "Hallo..",              
+                  	"source": "oo",                           
+   	                "displayText": "Your result is this",                   
+   	             "messages": [{                             
+   		         "type": 0,                        
+   		         "speech": "Hallo..o"       
+  	            }]
+            }};
              console.log("dialogflow response is"+JSON.stringify(out));
              res.send('Your response is'+JSON.stringify(out)); 
 		  }else{
