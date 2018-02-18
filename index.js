@@ -35,10 +35,10 @@ app.post('/result',function(req,res){
 			  console.log(body);
 			  res.setHeader('Content-Type', 'application/json');
                 // send only text response
-              let responseJson = JSON.stringify(body); 
+              var responseJson = "You result is"+JSON.stringify(body); 
              res.json({
         speech: "Your result is",
-        displayText: "Your result is"+responseJson,
+        displayText: responseJson,
         source: 'sample'
     });
              
