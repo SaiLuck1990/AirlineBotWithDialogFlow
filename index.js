@@ -38,8 +38,8 @@ app.post('/result',function(req,res){
               let responseJson = JSON.stringify(body); 
              res.json({
         speech: "Your result is",
-        displayText: "Your result is",
-        source: 'webhook-echo-sample'
+        displayText: "Your result is"+responseJson,
+        source: 'sample'
     });
              
 		  }else{
