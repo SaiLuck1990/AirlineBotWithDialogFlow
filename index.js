@@ -36,7 +36,11 @@ app.post('/result',function(req,res){
 			  res.type('json');
                 // send only text response
               let responseJson = JSON.stringify(body); 
-             res.send('Your response is'+responseJson); 
+
+              var out = {speech: responseJson,
+                     displayText: responseJson,
+                     data: null};
+             res.send('Your response is'+out); 
 		  }else{
 			  res.send("Error !!!!!"+error);
 		  }
