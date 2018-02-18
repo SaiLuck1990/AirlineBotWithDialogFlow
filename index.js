@@ -41,6 +41,7 @@ app.post('/result',function(req,res){
 	   });
 });
 
-app.listen(app.get('port'),function(){
+// Heroku assigns a dynamci port 
+app.listen(process.env.PORT || 5000,function(){
     console.log('running on port',app.get('port'));
 });
