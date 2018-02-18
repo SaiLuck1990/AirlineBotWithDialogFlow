@@ -38,9 +38,9 @@ app.post('/result',function(req,res){
               let responseJson = JSON.stringify(body); 
 
               var out = {speech: 'Hello this is your result',
-                     displayText: 'Hello this is your result',
-                     data: null};
-             console.log("dialogflow response is"+out);
+                         displayText: 'Hello this is your result',
+                         data: null};
+             console.log("dialogflow response is"+JSON.stringify(out));
              res.send('Your response is'+JSON.stringify(out)); 
 		  }else{
 			  res.send("Error !!!!!"+error);
