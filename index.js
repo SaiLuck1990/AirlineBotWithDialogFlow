@@ -36,17 +36,12 @@ app.post('/result',function(req,res){
 			  res.setHeader('Content-Type', 'application/json');
                 // send only text response
               let responseJson = JSON.stringify(body); 
-
-              var out =
-             {"fulfillment": 
-                   {"speech": "Hallo..",                   
-   	             "messages": [{                             
-   		         "type": 0,                        
-   		         "speech": "Hallo..o"       
-  	            }]
-            },"score": 0.8999999761581421};
-             console.log("dialogflow response is"+JSON.stringify(out));
-             res.send('Your response is'+JSON.stringify(out)); 
+             res.json({
+        speech: "Your result is",
+        displayText: "Your result is",
+        source: 'webhook-echo-sample'
+    });
+             
 		  }else{
 			  res.send("Error !!!!!"+error);
 		  }
