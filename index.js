@@ -33,14 +33,15 @@ app.post('/result',function(req,res){
 		  if (!error && response.statusCode == 200) { 
               console.log('Success');
 			  console.log(body);
-			  res.type('json');
+			  res.setHeader('Content-Type', 'application/json');
                 // send only text response
               let responseJson = JSON.stringify(body); 
 
-              var out = {speech: responseJson,
-                     displayText: responseJson,
+              var out = {speech: 'Hello this is your result',
+                     displayText: 'Hello this is your result',
                      data: null};
-             res.send('Your response is'+out); 
+             console.log("dialogflow response is"+out);
+             res.send('Your response is'+JSON.stringify(out)); 
 		  }else{
 			  res.send("Error !!!!!"+error);
 		  }
