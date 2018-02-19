@@ -35,7 +35,8 @@ app.post('/result',function(req,res){
 			  console.log(body);
 			  res.setHeader('Content-Type', 'application/json');
                 // send only text response
-              var responseJson = "You result"+JSON.stringify(body); 
+              var responseJson = "You result"+JSON.stringify(body);
+              console.log(responseJson);
 
               //var quickReplies = "{messages:[{type:0,platform:facebook,+speech:Sure ! Can you also please let me know where would you like to start your journey from (origin) ?},{type:2,platform:facebook,title:hello,replies:[London Heathrow,London City,London Gatwick]},{type:0,speech:yes}]}";
 
