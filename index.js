@@ -37,16 +37,16 @@ app.post('/result',function(req,res){
                 // send only text response
               var responseJson = "You result"+JSON.stringify(body); 
 
-              var quickReplies = "{messages:[{type:0,platform:facebook,+speech:Sure ! Can you also please let me know where would you like to start your journey from (origin) ?},{type:2,platform:facebook,title:hello,replies:[London Heathrow,London City,London Gatwick]},{type:0,speech:yes}]}";
+              //var quickReplies = "{messages:[{type:0,platform:facebook,+speech:Sure ! Can you also please let me know where would you like to start your journey from (origin) ?},{type:2,platform:facebook,title:hello,replies:[London Heathrow,London City,London Gatwick]},{type:0,speech:yes}]}";
 
         
 
-             res.json(quickReplies);
-             //res.json({
-            //speech: responseJson,
-            //displayText: responseJson,
-            //source: 'sample'
-           //});
+             //res.json(quickReplies);
+             res.json({
+            speech: responseJson,
+            displayText: responseJson,
+            source: 'sample'
+           });
              
 		  }else{
 			  res.send("Error !!!!!"+error);
