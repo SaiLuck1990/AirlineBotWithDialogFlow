@@ -46,7 +46,7 @@ app.post('/result',function(req,res){
              res.json({
             speech: responseJson,
             displayText: responseJson,
-            messages:[{type:2,platform:facebook,title:currencyType,replies:[gbp,inr]}],
+            messages:[{title:selecttype,replies:[gbp,inr],type: 2}],
             source: 'sample'
            });
              
