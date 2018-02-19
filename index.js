@@ -47,6 +47,7 @@ app.post('/result',function(req,res){
             messages:[
                    {
                     title:"select",
+                    platform:"facebook",
                     replies:['gbp','inr'],
                     type: 2}
                 ],
