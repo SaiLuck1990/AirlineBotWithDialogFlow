@@ -51,6 +51,17 @@ app.post('/result',function(req,res){
                     replies:['gbp','inr'],
                     type: 2}
                 ],
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
+                "title":"View Website"
+              },{
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ],
             source: 'sample'
            });
              
