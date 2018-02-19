@@ -49,19 +49,19 @@ app.post('/result',function(req,res){
                     title:"select",
                     platform:"facebook",
                     replies:['gbp','inr'],
+                    buttons:[
+                    {
+                   type:"web_url",
+                   url:"https://petersfancybrownhats.com",
+                   title:"View Website"
+                     },{
+                   type:"postback",
+                   title:"Start Chatting",
+                   payload:"DEVELOPER_DEFINED_PAYLOAD"
+                    }              
+                   ],
                     type: 2}
                 ],
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
-                "title":"View Website"
-              },{
-                "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
-              }              
-            ],
             source: 'sample'
            });
              
