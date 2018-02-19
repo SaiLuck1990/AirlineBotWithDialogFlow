@@ -48,7 +48,6 @@ app.post('/result',function(req,res){
                    {
                     title:"select",
                     platform:"facebook",
-                    replies:['gbp','inr'],
                     buttons:[
                     {
                    type:"web_url",
