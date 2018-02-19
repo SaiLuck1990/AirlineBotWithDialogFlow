@@ -46,7 +46,12 @@ app.post('/result',function(req,res){
              res.json({
             speech: responseJson,
             displayText: responseJson,
-            messages:[{title:selecttype,replies:[gbp,inr],type: 2}],
+            messages:[
+                   {
+                    title:"select",
+                    replies:['gbp','inr'],
+                    type: 2}
+                ],
             source: 'sample'
            });
              
