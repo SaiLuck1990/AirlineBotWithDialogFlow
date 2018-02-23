@@ -41,24 +41,14 @@ app.post('/result',function(req,res){
               //var quickReplies = "{messages:[{type:0,platform:facebook,+speech:Sure ! Can you also please let me know where would you like to start your journey from (origin) ?},{type:2,platform:facebook,title:hello,replies:[London Heathrow,London City,London Gatwick]},{type:0,speech:yes}]}";
 
              //res.json(quickReplies);
-             res.json({
+            res.json({
             speech: responseJson,
             displayText: responseJson,
             messages:[
                    {
-                    title:"select",
-                    platform:"facebook",
-                    buttons:[
-                    {
-                   type:"web_url",
-                   url:"https://petersfancybrownhats.com",
-                   title:"View Website"
-                     },{
-                   type:"postback",
-                   title:"Start Chatting",
-                   payload:"DEVELOPER_DEFINED_PAYLOAD"
-                    }              
-                   ],
+                    title:"select the below option",
+                    //platform:"facebook",
+                    replies:['gbp','inr'],
                     type: 2}
                 ],
             source: 'sample'
