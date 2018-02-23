@@ -42,8 +42,8 @@ app.post('/result',function(req,res){
 
              //res.json(quickReplies);
             res.json({
-            speech: responseJson,
-            displayText: responseJson,
+            //speech: responseJson,
+            //displayText: responseJson,
             messages:[
                    {
                     title:"select the below option",
