@@ -15,43 +15,40 @@ app.get('/hello' ,function(req,res){
     res.send('Hello I am Sailakshmi');
 });
 
-app.post('/result',function(req,res){
-    var currency = req.body.result.parameters.currency;
-    var outputCurrency = req.body.result.parameters.outputCurrency;
+app.post('/airports',function(req,res){
+    var city = req.body.result.parameters.destination.city;
     var outString = "Result is";
-    console.log(currency);
-    console.log(outputCurrency);
+    console.log("City sent from Bot is"+city);
     request({
-         url: "https://api.fixer.io/latest",
+         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
          qs: {
-                    base: currency,
-                    symbols: outputCurrency
+                    term: city,
+                    apikey: "J5ZkcObTCaZvq9MlYs0rjycwAx8PdVTk"
                 },
          method: 'GET',
         json: true
     }, function(error, response, body){ 
 		  if (!error && response.statusCode == 200) { 
-              console.log('Success');
-			  console.log(body);
+			  //console.log("Airport Service Response is"+JSON.stringify(body));
 			  res.setHeader('Content-Type', 'application/json');
-                // send only text response
-              var responseJson = "You result"+JSON.stringify(body);
-              console.log(responseJson);
-
-              //var quickReplies = "{messages:[{type:0,platform:facebook,+speech:Sure ! Can you also please let me know where would you like to start your journey from (origin) ?},{type:2,platform:facebook,title:hello,replies:[London Heathrow,London City,London Gatwick]},{type:0,speech:yes}]}";
-
-             //res.json(quickReplies);
+              var airportList = JSON.stringify(body);
+              var replies =[];
+              for(var i=0;i<body.length;i++){
+                  var airportCode = body[i].value;
+                  var airportName = body[i].label;
+                  replies.push(airportName);
+              }
             res.json({
             //speech: responseJson,
             //displayText: responseJson,
             messages:[
                    {
-                    title:"select the below option",
+                    title:"Please select an airport in "+city,
                     //platform:"facebook",
-                    replies:['gbp','inr'],
+                    replies:replies,
                     type: 2}
                 ],
-            source: 'sample'
+            source: 'airports'
            });
              
 		  }else{
