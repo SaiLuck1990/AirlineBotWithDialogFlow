@@ -25,8 +25,18 @@ app.post('/airports',function(req,res){
     } else if(req.body.result.action==="findoriginairport"){
       city=req.body.result.parameters.origin.city;
        sendResponse(req,res,city,source);
+    } else if(req.body.result.action ==="triptype"){
+
     }
 });
+function sendTripTypes(req,res,source){
+    res.json({
+            //speech: responseJson,
+            //displayText: airportList,
+            title:"Please select a trip type",
+            messages:["oneway" ,"return"],
+            source: source});
+}
  function sendResponse(req,res,city,source){
     var outString = "Result is";
     console.log("City sent from Bot is"+city);
