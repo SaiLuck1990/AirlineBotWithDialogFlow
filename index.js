@@ -16,13 +16,18 @@ app.get('/hello' ,function(req,res){
 });
 
 app.post('/airports',function(req,res){
-    console.log("Your request is"+JSON.stringify(req.body));
+    //console.log("Your request is"+JSON.stringify(req.body));
     var city="";
+    var source = req.body.result.source;
     if(req.body.result.action==="findestinationairport"){
        city=req.body.result.parameters.destination.city;
-    } else {
+       sendResponse(req,res,city,source);
+    } else if(req.body.result.action==="findoriginairport"){
       city=req.body.result.parameters.origin.city;
+       sendResponse(req,res,city,source);
     }
+});
+ function sendResponse(req,res,city,source){
     var outString = "Result is";
     console.log("City sent from Bot is"+city);
     request({
@@ -44,27 +49,37 @@ app.post('/airports',function(req,res){
                   var airportName = body[i].label;
                   replies.push(airportName);
               }
-            res.json({
-            //speech: responseJson,
-            //displayText: airportList,
-            messages:[
+            var messages =[];
+
+            if(source === "agent"){
+                messages = [
                    {
                     title:"Please select an airport in "+city,
                     //platform:"facebook",
                     replies:replies,
                     type: 2}
-                ],
-            source: 'airports'
-           });
-
-             
+                ];
+            } else if (source === "facebook"){
+                messages = [
+                   {
+                    title:"Please select an airport in "+city,
+                    platform:"facebook",
+                    replies:replies,
+                    type: 2}
+                ];
+            }
+            res.json({
+            //speech: responseJson,
+            //displayText: airportList,
+            messages:messages,
+            source: source
+           });  
 		  }else{
 			  res.send("Error !!!!!"+error);
 		  }
 	   });
-});
-
-// Heroku assigns a dynamci port 
+  }
+// Heroku assigns a dynamic port 
 app.listen(process.env.PORT || 5000,function(){
     console.log('running on port',app.get('port'));
 });
