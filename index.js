@@ -26,7 +26,7 @@ app.post('/airports',function(req,res){
       city=req.body.result.parameters.origin.city;
        sendResponse(req,res,city,source);
     } else if(req.body.result.action ==="triptype"){
-
+        sendTripTypes(req,res,source);
     }
 });
 function sendTripTypes(req,res,source){
