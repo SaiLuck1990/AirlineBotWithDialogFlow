@@ -16,7 +16,12 @@ app.get('/hello' ,function(req,res){
 });
 
 app.post('/airports',function(req,res){
-    var city = req.body.result.parameters.destination.city;
+    var city="";
+    if(req.body.result.action==="findestinationairport"){
+       city=req.body.result.parameters.destination.city;
+    } else {
+      city=req.body.result.parameters.origin.city;
+    }
     var outString = "Result is";
     console.log("City sent from Bot is"+city);
     request({
@@ -50,7 +55,7 @@ app.post('/airports',function(req,res){
                 ],
             source: 'airports'
            });
-           
+
              
 		  }else{
 			  res.send("Error !!!!!"+error);
