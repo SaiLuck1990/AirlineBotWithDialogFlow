@@ -30,11 +30,18 @@ app.post('/airports',function(req,res){
     }
 });
 function sendTripTypes(req,res,source){
-    res.json({
+
+    messages = [
+                   {
+                    title:"Please select a trip type",
+                    //platform:"facebook",
+                    replies:["oneway" ,"return"],
+                    type: 2}
+                ];
+ res.json({
             //speech: responseJson,
             //displayText: airportList,
-            title:"Please select a trip type",
-            replies:["oneway" ,"return"],
+            messages:messages,
             source: source});
 }
  function sendResponse(req,res,city,source){
