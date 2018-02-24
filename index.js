@@ -34,7 +34,7 @@ function sendTripTypes(req,res,source){
             //speech: responseJson,
             //displayText: airportList,
             title:"Please select a trip type",
-            messages:["oneway" ,"return"],
+            replies:["oneway" ,"return"],
             source: source});
 }
  function sendResponse(req,res,city,source){
