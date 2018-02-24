@@ -40,7 +40,7 @@ app.post('/airports',function(req,res){
               }
             res.json({
             //speech: responseJson,
-            displayText: airportList,
+            //displayText: airportList,
             messages:[
                    {
                     title:"Please select an airport in "+city,
