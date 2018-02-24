@@ -40,7 +40,6 @@ var adultCount = 0;
 var youthCount = 0;
 var childCount = 0;
 var infantCount = 0;
- var replies = [];
 if(null !== req.body.result.parameters.adultcount){
   adultCount = req.body.result.parameters.adultCount;
 }else if (null != req.body.result.parameters.childcount){
@@ -108,12 +107,12 @@ console.log("Origin is"+origin);
 }
 
 function getTotalListOfFare(body){
+    var replies = new Array();
   for(var i=0;i<body.results.length;i++){
             var adultFare = 0;
             var childFare=0;
             var infantFare=0;
             var total=0;
-            var replies =[];
             if(null != body.results[i].fare.price_per_adult){
               adultFare = body.results[i].fare.price_per_adult.total_fare;
             }
