@@ -87,7 +87,7 @@ function sendTripTypes(req,res,source){
             }
             res.json({
             //speech: responseJson,
-            //displayText: airportList,
+            displayText: "This is your display text",
             messages:messages,
             source: source
            });  
