@@ -67,6 +67,7 @@ function searchFlights(req,res,source){
             infants : infantCount,
             include_airlines : "BA",
             nonstop : "false",
+            currency:"GBP",
             travel_class : cabin,
             number_of_results : 10
         },
@@ -80,14 +81,14 @@ function searchFlights(req,res,source){
             if(source === "agent"){
                 messages = [
                     {
-                        title:"Please select one of the fares for your journey in "+currencyCode,
+                        title:"Please select one of the fares for your journey in GBP",
                         replies:replies,
                         type: 2}
                 ];
             } else if (source === "facebook"){
                 messages = [
                     {
-                        title:"Please select one of the fares for your journey in "+currencyCode,
+                        title:"Please select one of the fares for your journey in GBP",
                         platform:"facebook",
                         replies:replies,
                         type: 2}
