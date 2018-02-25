@@ -76,17 +76,18 @@ function searchFlights(req,res,source){
         console.log(JSON.stringify(body));
         if (!error && response.statusCode == 200) {
             var replies = getTotalListOfFare(body);
+            var currencyCode = body.currency;
             if(source === "agent"){
                 messages = [
                     {
-                        title:"Please select one of the fares for your journey",
+                        title:"Please select one of the fares for your journey in "+currencyCode,
                         replies:replies,
                         type: 2}
                 ];
             } else if (source === "facebook"){
                 messages = [
                     {
-                        title:"Please select one of the fares for your journey",
+                        title:"Please select one of the fares for your journey in "+currencyCode,
                         platform:"facebook",
                         replies:replies,
                         type: 2}
