@@ -139,6 +139,8 @@ function sendTripTypes(req,res,source){
     messages = [
         {
             title:"Please select a trip type",
+            image_url:"http://www.gstatic.com/webp/gallery/1.webp",
+            subtitle:"We have the right hat for everyone.",
             //platform:"facebook",
             replies:["oneway" ,"return"],
             type: 2}
