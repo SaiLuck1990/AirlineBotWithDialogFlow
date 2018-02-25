@@ -29,6 +29,8 @@ app.post('/airports',function(req,res){
         sendTripTypes(req,res,source);
     }else if(req.body.result.action === "flightsearch"){
         searchFlights(req,res,source);
+    }else if(req.body.result.action === "findcabin"){
+        sendCabinTypes(req,res,source);
     }
 });
 
@@ -151,6 +153,24 @@ function sendTripTypes(req,res,source){
         messages:messages,
         source: source});
 }
+
+function sendCabinTypes(req,res,source){
+    messages = [
+        {
+            title:"Please select a cabin of your choice",
+            //image_url:"http://www.gstatic.com/webp/gallery/1.webp",
+            //subtitle:"We have the right hat for everyone.",
+            //platform:"facebook",
+            replies:["Economy" ,"Business","First Class"],
+            type: 2}
+    ];
+    res.json({
+        //speech: responseJson,
+        //displayText: airportList,
+        messages:messages,
+        source: source});
+}
+
 
 
 function sendAirports(req,res,city,source){
