@@ -73,7 +73,7 @@ function searchFlights(req,res,source){
         method: 'GET',
         json: true
     },function(error, response, body){
-        console.log(JSON.stringify(body));
+        //console.log(JSON.stringify(body));
         if (!error && response.statusCode == 200) {
             var replies = getTotalListOfFare(body);
             var currencyCode = body.currency;
@@ -128,7 +128,7 @@ function getTotalListOfFare(body){
         total = adultFare + childFare + infantFare;
         console.log("totalFare"+total);
         //replies.push[total];
-        replies[i] = total;
+        replies[i] = Math.round(total);
         console.log("replies"+replies.length);
     }
     return replies;
