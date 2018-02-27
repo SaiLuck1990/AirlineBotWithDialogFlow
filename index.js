@@ -43,7 +43,7 @@ function searchFlights(req,res,source){
     var childCount = 0;
     var infantCount = 0;
     if(null !== req.body.result.parameters.adultcount){
-        adultCount = req.body.result.parameters.adultCount;
+        adultCount = req.body.result.parameters.adultcount;
     }else if (null != req.body.result.parameters.childcount){
         childCount = req.body.result.parameters.childcount;
     }else if(null != req.body.result.parameters.infantcount){
@@ -56,6 +56,7 @@ function searchFlights(req,res,source){
 
     console.log("Destination is"+destination);
     console.log("Origin is"+origin);
+    //console.log("adultcount"+adultCount);
 
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
@@ -114,21 +115,7 @@ function getTotalListOfFare(body){
     var replies = new Array(body.results.length);
     console.log(body.results.length);
     for(var i=0;i<body.results.length;i++){
-        var adultFare = 0;
-        var childFare=0;
-        var infantFare=0;
-        var total=0;
-        if(null != body.results[i].fare.price_per_adult){
-            adultFare = body.results[i].fare.price_per_adult.total_fare;
-        }
-        if(null!=body.results[i].fare.price_per_child){
-            childFare = body.results[i].fare.price_per_child.total_fare;
-        }
-        if(null!=body.results[i].fare.price_per_infant){
-            infantFare = body.results[i].fare.price_per_infant.total_fare;
-        }
-
-        total = adultFare + childFare + infantFare;
+        total = body.results[i].fare.total_price;
         console.log("totalFare"+total);
         //replies.push[total];
         replies[i] = Math.round(total);
