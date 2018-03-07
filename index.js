@@ -61,7 +61,7 @@ function searchFlights(req,res,source){
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
         qs: {
-            apikey: "J5ZkcObTCaZvq9MlYs0rjycwAx8PdVTk",
+            apikey: "vu2kzc6rjqG7qAHXpKccVvVM6XLYb1Hz",
             origin: origin,
             destination : destination,
             departure_date : depDate,
