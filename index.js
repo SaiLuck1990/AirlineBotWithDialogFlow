@@ -167,7 +167,7 @@ function sendAirports(req,res,city,source){
         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
         qs: {
             term: city,
-            apikey: "J5ZkcObTCaZvq9MlYs0rjycwAx8PdVTk"
+            apikey: "vu2kzc6rjqG7qAHXpKccVvVM6XLYb1Hz"
         },
         method: 'GET',
         json: true
