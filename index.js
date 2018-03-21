@@ -164,10 +164,10 @@ function sendAirports(req,res,city,source){
     var outString = "Result is";
     console.log("City sent from Bot is"+city);
     request({
-        url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
+        url: "http://aviation-edge.com/api/public/autocomplete",
         qs: {
-            term: city,
-            apikey: "gsd9NA8otlDkflTSKXaAd09VE2xQrNLN"
+            query: city,
+            key: "c75480-528fd3-82ffe7-8e2e93-c66a61"
         },
         method: 'GET',
         json: true
@@ -177,9 +177,11 @@ function sendAirports(req,res,city,source){
             res.setHeader('Content-Type', 'application/json');
             var airportList = JSON.stringify(body);
             var replies =[];
-            for(var i=0;i<body.length;i++){
-                var airportCode = body[i].value;
-                var airportName = body[i].label;
+            for(var i=0;i<body.airports.length;i++){
+                //console.log("Inside for loop");
+                var airportCode = body.airports[i].code;
+                //console.log("airportCode"+airportCode);
+                var airportName = body.airports[i].name;
                 replies.push(airportName);
             }
             var messages =[];
