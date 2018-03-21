@@ -173,14 +173,14 @@ function sendAirports(req,res,city,source){
         json: true
     }, function(error, response, body){
         if (!error && response.statusCode == 200) {
-            //console.log("Airport Service Response is"+JSON.stringify(body));
+            console.log("Airport Service Response is"+JSON.stringify(body));
             res.setHeader('Content-Type', 'application/json');
             var airportList = JSON.stringify(body);
             var replies =[];
             for(var i=0;i<body.airports.length;i++){
                 //console.log("Inside for loop");
                 var airportCode = body.airports[i].code;
-                //console.log("airportCode"+airportCode);
+                console.log("airportCode"+airportCode);
                 var airportName = body.airports[i].name;
                 replies.push(airportName);
             }
