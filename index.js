@@ -31,6 +31,8 @@ app.post('/airports',function(req,res){
         searchFlights(req,res,source);
     }else if(req.body.result.action === "findcabin"){
         sendCabinTypes(req,res,source);
+    }else if(req.body.result.action === "sample"){
+        buildSampleCard(res,source);
     }
 });
 
@@ -158,6 +160,61 @@ function sendCabinTypes(req,res,source){
         source: source});
 }
 
+function buildSampleCard(res,source){
+
+  if(source === "agent"){
+     messages = [
+                     {
+                        type: 0,
+                        speech: "Sample Response for Card"
+                     }
+                ];
+            } else if (source === "facebook"){
+                messages = [
+                    {            
+            attachment: {
+            type: "template",
+            payload: {
+                    template_type: "airline_checkin",
+                    intro_message: "Check-in is available now.",
+                    locale: "en_US",        
+                    pnr_number: "ABCDEF",
+                    checkin_url: "https:\/\/www.airline.com\/check-in",  
+                    flight_info: [
+                            {
+                            flight_number: "f001",
+                            departure_airport: {
+                                airport_code: "SFO",
+                                city: "San Francisco",
+                                terminal: "T4",
+                                gate: "G8"
+                            },
+                            arrival_airport: {
+                                 airport_code: "SEA",
+                                 city: "Seattle",
+                                 terminal: "T4",
+                                 gate: "G8"
+            },
+            flight_schedule: {
+              boarding_time: "2016-01-05T15:05",
+              departure_time: "2016-01-05T15:45",
+              arrival_time: "2016-01-05T17:30"
+            }
+          }
+        ]
+      }
+    }
+  }             
+];
+            }
+    res.json({
+                //speech: responseJson,
+                displayText: "This is your display text",
+                messages:messages,
+                source: source
+     });
+
+}
 
 
 function sendAirports(req,res,city,source){
