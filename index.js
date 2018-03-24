@@ -161,7 +161,6 @@ function sendCabinTypes(req,res,source){
 }
 
 function buildSampleCard(res,source){
-
   if(source === "agent"){
      messages = [
                     {            
