@@ -200,7 +200,8 @@ function buildSampleCard(res,source){
 ];
             } else if (source === "facebook"){
                 messages = [
-                    {            
+                    {   
+            platform:"facebook",         
             attachment: {
             type: "template",
             payload: {
@@ -238,7 +239,7 @@ function buildSampleCard(res,source){
             }
     res.json({
                 //speech: responseJson,
-                displayText: "This is your display text",
+                displayText: "Sample Card Response",
                 messages:messages,
                 source: source
      });
