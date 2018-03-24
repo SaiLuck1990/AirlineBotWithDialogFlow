@@ -165,7 +165,8 @@ function buildSampleCard(res,source){
      messages = [
                     {            
             attachment: {
-            type: "template",
+                title:"Desktop response",
+                type: 4,
             payload: {
                     template_type: "airline_checkin",
                     intro_message: "Check-in is available now.",
