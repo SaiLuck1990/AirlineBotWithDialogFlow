@@ -201,9 +201,10 @@ function buildSampleCard(res,source){
             } else if (source === "facebook"){
                 messages = [
                     {   
+            title:"Facebook response",
             platform:"facebook",         
             attachment: {
-            type: "template",
+            type: 4,
             payload: {
                     template_type: "airline_checkin",
                     intro_message: "Check-in is available now.",
