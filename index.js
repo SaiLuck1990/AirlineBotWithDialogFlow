@@ -82,11 +82,18 @@ function searchFlights(req,res,source){
             var replies = getTotalListOfFare(body);
             var currencyCode = body.currency;
             if(source === "agent"){
-                messages = [
+               messages = [
                     {
-                        title:"Please select one of the fares for your journey in GBP",
-                        replies:replies,
-                        type: 2}
+                        type: "simple_response",
+                        platform:"google",
+                        textToSpeech:"Please select one of the fares for your journey in GBP",
+                    },
+                    {
+                        type: "suggestion_chips",
+                        platform:"google",
+                        suggestions:replies,
+                        
+                    },
                 ];
             } else if (source === "facebook"){
                 messages = [
@@ -114,12 +121,24 @@ function searchFlights(req,res,source){
 function getTotalListOfFare(body){
     var replies = new Array(body.results.length);
     console.log(body.results.length);
+    if(body.result.source == "Agent"){
+         for(var i=0;i<body.results.length;i++){
+        total = body.results[i].fare.total_price;
+        console.log("totalFare"+total);
+        //replies.push[total];
+        replies[i] = Math.round(total);
+        replies.push(new title(Math.round(total)));
+        //console.log("replies"+replies.length);
+     }
+    }
+    else {
     for(var i=0;i<body.results.length;i++){
         total = body.results[i].fare.total_price;
         console.log("totalFare"+total);
         //replies.push[total];
         replies[i] = Math.round(total);
         console.log("replies"+replies.length);
+    }
     }
     return replies;
 }
