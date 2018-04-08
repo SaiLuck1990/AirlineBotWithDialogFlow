@@ -171,16 +171,25 @@ function sendAirports(req,res,city,source){
         json: true
     }, function(error, response, body){
         if (!error && response.statusCode == 200) {
-            console.log("Airport Service Response is"+JSON.stringify(body));
+            //console.log("Airport Service Response is"+JSON.stringify(body));
             res.setHeader('Content-Type', 'application/json');
             var airportList = JSON.stringify(body);
             var replies =[];
-            for(var i=0;i<body.length;i++){
+            if(source == "agent"){
+                //console.log("Agent for Google");
+                for(var i=0;i<body.length;i++){
+                //var airportCode = body[i].value;
+                var airportName = body[i].label;
+                replies.push(new title(airportName));
+                }
+            }else {
+             for(var i=0;i<body.length;i++){
                 //console.log("Inside for loop");
                 var airportCode = body[i].value;
                 //console.log("airportCode"+airportCode);
                 var airportName = body[i].label;
                 replies.push(airportName);
+             }
             }
             var messages =[];
 
@@ -188,8 +197,8 @@ function sendAirports(req,res,city,source){
                 messages = [
                     {
                         title:"Please select an airport in "+city,
-                        //platform:"facebook",
-                        replies:replies,
+                        platform:"google",
+                        suggestions:replies,
                         type: 2}
                 ];
             } else if (source === "facebook"){
@@ -211,6 +220,11 @@ function sendAirports(req,res,city,source){
             res.send("Error !!!!!"+error);
         }
     });
+}
+
+
+function title(title){
+    this.title = title;
 }
 // Heroku assigns a dynamic port
 app.listen(process.env.PORT || 5000,function(){
