@@ -160,7 +160,7 @@ function sendCabinTypes(req,res,source){
 
 function sendAirports(req,res,city,source){
     var outString = "Result is";
-    console.log("City sent from Bot is"+city);
+    //console.log("City sent from Bot is"+city);
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
         qs: {
@@ -182,7 +182,7 @@ function sendAirports(req,res,city,source){
                 var airportCode = body[i].value;
                 var airportName = body[i].label;
                 var airportCodeAndName = airportCode;
-                replies.push(new title(airportName,airportCode));
+                replies.push(new title(airportName));
                 airports.push(airportCodeAndName);
                 }
             }else {
@@ -201,7 +201,7 @@ function sendAirports(req,res,city,source){
                     {
                         type: "simple_response",
                         platform:"google",
-                        textToSpeech:"Can you please tell an airport code in "+city+" Suggestions are "+airports,
+                        textToSpeech:"Can you please select an airport code in "+city+" Suggestions are "+airports,
                     },
                     {
                         type: "suggestion_chips",
@@ -232,8 +232,8 @@ function sendAirports(req,res,city,source){
 }
 
 
-function title(title,code){
-    this.title = code +" for "+ title;
+function title(title){
+    this.title = title;
 }
 // Heroku assigns a dynamic port
 app.listen(process.env.PORT || 5000,function(){
