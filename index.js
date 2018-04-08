@@ -175,12 +175,15 @@ function sendAirports(req,res,city,source){
             res.setHeader('Content-Type', 'application/json');
             var airportList = JSON.stringify(body);
             var replies =[];
+            var airports = [];
             if(source == "agent"){
                 //console.log("Agent for Google");
                 for(var i=0;i<body.length;i++){
-                //var airportCode = body[i].value;
+                var airportCode = body[i].value;
                 var airportName = body[i].label;
-                replies.push(new title(airportName));
+                var airportCodeAndName = airportCode+" for "+airportName;
+                replies.push(new title(airportName,airportCode));
+                airports.push(airportCodeAndName);
                 }
             }else {
              for(var i=0;i<body.length;i++){
@@ -196,16 +199,16 @@ function sendAirports(req,res,city,source){
             if(source === "agent"){
                 messages = [
                     {
+                        type: "simple_response",
+                        platform:"google",
+                        textToSpeech:"Can you please tell an airport code in "+city+" Suggestions are "+airports,
+                    },
+                    {
                         type: "suggestion_chips",
                         platform:"google",
                         suggestions:replies,
                         
                     },
-                    {
-                        type: "simple_response",
-                        platform:"google",
-                        textToSpeech:"Please select an airport in "+city
-                    }
                 ];
             } else if (source === "facebook"){
                 messages = [
@@ -229,8 +232,8 @@ function sendAirports(req,res,city,source){
 }
 
 
-function title(title){
-    this.title = title;
+function title(title,code){
+    this.title = code +" for "+ title;
 }
 // Heroku assigns a dynamic port
 app.listen(process.env.PORT || 5000,function(){
