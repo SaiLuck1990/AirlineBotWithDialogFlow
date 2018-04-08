@@ -16,7 +16,7 @@ app.get('/hello' ,function(req,res){
 });
 
 app.post('/airports',function(req,res){
-    //console.log("Your request is"+JSON.stringify(req.body));
+    console.log("Your request is"+JSON.stringify(req.body));
     var city="";
     var source = req.body.result.source;
     if(req.body.result.action==="findestinationairport"){
