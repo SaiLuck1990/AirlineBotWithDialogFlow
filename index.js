@@ -181,7 +181,7 @@ function sendAirports(req,res,city,source){
                 for(var i=0;i<body.length;i++){
                 var airportCode = body[i].value;
                 var airportName = body[i].label;
-                var airportCodeAndName = airportCode+" for "+airportName;
+                var airportCodeAndName = airportCode;
                 replies.push(new title(airportName,airportCode));
                 airports.push(airportCodeAndName);
                 }
