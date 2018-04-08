@@ -220,7 +220,7 @@ function sendAirports(req,res,city,source){
                     {
                         type: "simple_response",
                         platform:"google",
-                        textToSpeech:"Can you please select an airport code in "+city+" Suggestions are "+airports,
+                        textToSpeech:"Can you please select an airport code in "+city+"? Suggestions are "+airports,
                     },
                     {
                         type: "suggestion_chips",
