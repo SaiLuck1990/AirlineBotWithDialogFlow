@@ -196,10 +196,14 @@ function sendAirports(req,res,city,source){
             if(source === "agent"){
                 messages = [
                     {
-                        title:"Please select an airport in "+city,
                         platform:"google",
                         suggestions:replies,
-                        type: 2}
+                        type: "suggestion_chips"
+                    },
+                    {
+                        type:0,
+                        speech:"Please select an airport in "+city
+                    }
                 ];
             } else if (source === "facebook"){
                 messages = [
