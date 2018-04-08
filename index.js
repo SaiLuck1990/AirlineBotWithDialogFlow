@@ -16,7 +16,7 @@ app.get('/hello' ,function(req,res){
 });
 
 app.post('/airports',function(req,res){
-    console.log("Your request is"+JSON.stringify(req.body));
+    //console.log("Your request is"+JSON.stringify(req.body));
     var city="";
     var source = req.body.result.source;
     if(req.body.result.action==="findestinationairport"){
@@ -77,9 +77,9 @@ function searchFlights(req,res,source){
         method: 'GET',
         json: true
     },function(error, response, body){
-        //console.log(JSON.stringify(body));
+        console.log("Source is"+source);
         if (!error && response.statusCode == 200) {
-            var replies = getTotalListOfFare(body);
+            var replies = getTotalListOfFare(body,source);
             var currencyCode = body.currency;
             if(source === "agent"){
                messages = [
@@ -118,16 +118,16 @@ function searchFlights(req,res,source){
     });
 }
 
-function getTotalListOfFare(body){
+function getTotalListOfFare(body,source){
     var replies = new Array(body.results.length);
-    console.log(body.results.length);
-    if(body.result.source == "Agent"){
+    //console.log(body.results.length);
+    if(source == "agent"){
          for(var i=0;i<body.results.length;i++){
         total = body.results[i].fare.total_price;
-        console.log("totalFare"+total);
+        //console.log("totalFare"+total);
         //replies.push[total];
-        replies[i] = Math.round(total);
-        replies.push(new title(Math.round(total)));
+        replies[i] = (new title(Math.round(total)));
+        //replies.push(new title(Math.round(total)));
         //console.log("replies"+replies.length);
      }
     }
