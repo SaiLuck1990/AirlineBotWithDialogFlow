@@ -61,7 +61,7 @@ function searchFlights(req,res,source){
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
         qs: {
-            apikey: "gsd9NA8otlDkflTSKXaAd09VE2xQrNLN",
+            apikey: "R9o7k5HHtyCAuE0JCAAIiGdhoIP4JCJY",
             origin: origin,
             destination : destination,
             departure_date : depDate,
@@ -184,7 +184,7 @@ function sendAirports(req,res,city,source){
         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
         qs: {
             term: city,
-            apikey: "gsd9NA8otlDkflTSKXaAd09VE2xQrNLN"
+            apikey: "R9o7k5HHtyCAuE0JCAAIiGdhoIP4JCJY"
         },
         method: 'GET',
         json: true
