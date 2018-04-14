@@ -18,24 +18,25 @@ app.get('/hello' ,function(req,res){
 app.post('/airports',function(req,res){
     //console.log("Your request is"+JSON.stringify(req.body));
     var city="";
+    var apikey=req.body.result.parameters.apikey;
     var source = req.body.result.source;
     if(req.body.result.action==="findestinationairport"){
         city=req.body.result.parameters.destination.city;
-        sendAirports(req,res,city,source);
+        sendAirports(req,res,city,source,apikey);
     } else if(req.body.result.action==="findoriginairport"){
         city=req.body.result.parameters.origin.city;
-        sendAirports(req,res,city,source);
+        sendAirports(req,res,city,source,apikey);
     } else if(req.body.result.action ==="triptype"){
         sendTripTypes(req,res,source);
     }else if(req.body.result.action === "flightsearch"){
-        searchFlights(req,res,source);
+        searchFlights(req,res,source,apikey);
     }else if(req.body.result.action === "findcabin"){
         sendCabinTypes(req,res,source);
     }
 });
 
 
-function searchFlights(req,res,source){
+function searchFlights(req,res,source,apikey){
     var depDate = req.body.result.parameters.date;
     var cabin = req.body.result.parameters.cabin;
     var adultCount = 0;
@@ -61,7 +62,7 @@ function searchFlights(req,res,source){
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
         qs: {
-            apikey: "R9o7k5HHtyCAuE0JCAAIiGdhoIP4JCJY",
+            apikey: apikey,
             origin: origin,
             destination : destination,
             departure_date : depDate,
@@ -177,14 +178,14 @@ function sendCabinTypes(req,res,source){
         source: source});
 }
 
-function sendAirports(req,res,city,source){
+function sendAirports(req,res,city,source,apikey){
     var outString = "Result is";
     //console.log("City sent from Bot is"+city);
     request({
         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete",
         qs: {
             term: city,
-            apikey: "R9o7k5HHtyCAuE0JCAAIiGdhoIP4JCJY"
+            apikey: apikey
         },
         method: 'GET',
         json: true
