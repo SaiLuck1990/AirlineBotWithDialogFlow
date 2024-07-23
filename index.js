@@ -20,6 +20,7 @@ app.post('/airports',function(req,res){
     var city="";
     //Inducing a secret
     var apiKey = "jgsajdgsajdg";
+    var accessToken = "Bearer ffhsakjf";
    // var apikey=req.body.result.parameters.apiKey;
     //console.log("apiKey"+apikey);
     var source = req.body.result.source;
