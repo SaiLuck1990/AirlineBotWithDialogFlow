@@ -1,0 +1,3 @@
+# This is a configuration file
+# Below is a fake API key for testing purposes
+API_KEY=1234567890abcdef1234567890abcdef
